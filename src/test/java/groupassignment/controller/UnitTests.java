@@ -1,5 +1,6 @@
 package groupassignment.controller;
 
+import groupassignment.AppTest;
 import groupassignment.model.Person;
 import groupassignment.repository.PersonRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +14,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 
-@SpringBootTest
+@SpringBootTest(classes = AppTest.class)
 class UnitTests {
 
     @MockBean

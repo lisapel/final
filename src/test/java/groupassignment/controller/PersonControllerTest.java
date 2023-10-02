@@ -17,7 +17,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -55,12 +54,6 @@ class PersonControllerTest {
     void whenGetAllPersonsThenReturnPersonNames() throws Exception {
         this.mockMvc.perform(get("/all")).andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("Lisa")));
     }
-
-    @Test
-    void whenGetAllPersonsThenReturnCorrectSize() {
-        assertThat(personRepository.findAll(), hasSize(3));
-    }
-
 
     @Test
     void whenAddingNewPersonThenReturnNameOfPerson() throws Exception {

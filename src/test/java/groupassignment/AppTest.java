@@ -19,5 +19,7 @@ class AppTest {
     @Test void contextLoads(){
     }
 
-
+    @Test
+    void main() {
+    }
 }

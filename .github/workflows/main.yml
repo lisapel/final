@@ -1,0 +1,26 @@
+name: test-and-build
+
+on:
+  push:
+    branches:
+      - implementation
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: 17
+        distribution: temurin
+
+    - name: Build with Gradle
+      run: chmod +x ./gradlew
+
+    - name: Run UnitTests
+      run: ./gradlew test --tests "groupassignment.controller.UnitTests"

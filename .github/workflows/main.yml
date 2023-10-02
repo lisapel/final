@@ -30,8 +30,8 @@ jobs:
     needs: job1
 
     steps:
-    - name: Make gradlew executable
-      run: chmod +x ./gradlew
+    - name: Checkout code
+      uses: actions/checkout@v2
       
     - name: Run all tests
       run: ./gradlew test

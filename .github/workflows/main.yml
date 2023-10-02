@@ -6,9 +6,9 @@ on:
       - implementation
 
 jobs:
-  job1:
+  build-and-test:
     runs-on: ubuntu-latest
-  
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -22,18 +22,16 @@ jobs:
     - name: Build with Gradle
       run: chmod +x ./gradlew
 
+  job1:
+    needs: build-and-test
+
+    steps:
     - name: Run UnitTests
       run: ./gradlew test --tests "groupassignment.controller.UnitTests"
 
   job2:
-    runs-on: ubuntu-latest
-    needs: job1
+    needs: build-and-test
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      
     - name: Run all tests
       run: ./gradlew test
-    
-  

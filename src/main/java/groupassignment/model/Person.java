@@ -7,13 +7,22 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @Entity
-@NoArgsConstructor
-
 public class Person {
 
     @Id
     @GeneratedValue
     int id;
+    String name;
+
+
+
+    public Person(String name) {
+        this.name = name;
+    }
+
+    public Person() {
+
+    }
 
     public String getName() {
         return name;
@@ -22,7 +31,5 @@ public class Person {
     public void setName(String name) {
         this.name = name;
     }
-
-    String name;
 
 }

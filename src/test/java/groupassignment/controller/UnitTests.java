@@ -1,9 +1,10 @@
 package groupassignment.controller;
 
-import groupassignment.AppTest;
+import groupassignment.SmokeTests;
 import groupassignment.model.Person;
 import groupassignment.repository.PersonRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -14,7 +15,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 
-@SpringBootTest(classes = AppTest.class)
+@SpringBootTest(classes = SmokeTests.class)
+@Tag("UnitTest")
 class UnitTests {
 
     @MockBean

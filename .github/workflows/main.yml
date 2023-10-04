@@ -6,11 +6,10 @@ env:
 on:
   pull_request:
     types:
-      - created
+      - opened
   push:
     branches: 
       - implementation
-      - feature-*
       - main
 
 jobs:
@@ -30,20 +29,6 @@ jobs:
         git checkout -b feature-${{ github.run_number }}
         git push origin feature-${{ github.run_number }}
       
-    - name: Create Pull Request
-      id: cpr
-      uses: peter-evans/create-pull-request@v5
-      with:
-          branch: main
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Pull Request
-          committer: GitHub <noreply@github.com>
-          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          signoff: false
-          delete-branch: true
-          title: 'Feature Pull Request'
-          body: 'This is a pull request for the feature branch.'
- 
   unit_tests:
     
     runs-on: ubuntu-latest

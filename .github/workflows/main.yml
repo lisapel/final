@@ -38,11 +38,13 @@ jobs:
         commit-message:  Pull Request
         title: 'Feature Pull Request'
         body: 'This is a pull request for the feature branch.'
-        branch: feature # The branch where you commit
-        base: main #  base branch here 
+        branch: main # The branch where you commit
+        base: feature #  base branch here 
  
   unit_tests:
+    
     runs-on: ubuntu-latest
+    needs: create_pull_request
   
     steps:
     - name: Checkout code

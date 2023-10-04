@@ -2,6 +2,7 @@ name: test-build-push-deploy
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  IMAGE: ${{ github.repository }}:${{ github.head_ref }}
 
 on:
   pull_request:
@@ -117,13 +118,13 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository }}:${{github.ref_name}}
 
-  deploy:
+  fake-deploy:
     runs-on: ubuntu-latest
     needs: [unit_tests,all_tests,publish_github_package]
 
     steps:
       - name: deploy
-        run: echo $IMAGE_NAME
+        run: "echo Docker image would be: $IMAGE"
 
 
   

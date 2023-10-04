@@ -10,13 +10,15 @@ on:
   push:
     branches: 
       - implementation
-      - feature-*
       - main
 
 jobs:
   
   create_pull_request:
    runs-on: ubuntu-latest
+   permissions:
+      contents: write
+      pull-requests: write
       
    steps:
     - name: Checkout code

@@ -11,7 +11,7 @@ on:
     branches: 
       - implementation
       - main
-      - feature/*
+      - feature
 
 jobs:
   
@@ -22,16 +22,14 @@ jobs:
       pull-requests: write
       repository-projects: write
     
-        BRANCH_NAME=$(echo "$RUNNER_NUMBER" | tr -cd '[:alnum:]-_' | tr '[:upper:]' '[:lower:]')
-
    steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
     - name: Create feature branch
       run: |
-        git checkout -b feature/$BRANCH_NAME
-        git push origin feature/$BRANCH_NAME
+        git checkout -b feature
+        git push origin feature
       
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
@@ -40,7 +38,7 @@ jobs:
         commit-message:  Pull Request
         title: 'Feature Pull Request'
         body: 'This is a pull request for the feature branch.'
-        branch: feature/$BRANCH_NAME # The branch where you commit
+        branch: feature # The branch where you commit
         base: main #  base branch here 
  
   unit_tests:

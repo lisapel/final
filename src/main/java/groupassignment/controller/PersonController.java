@@ -12,7 +12,7 @@ public class PersonController {
     @Autowired
     PersonRepository personRepository;
 
-    @RequestMapping("/hello") //ändring
+    @RequestMapping("/hello") 
     public String sayHello(){
         return "Hello";
     }

@@ -55,7 +55,7 @@ class PersonControllerTest {
 
     @Test
     void whenCallingSayHelloThenReturnHello() throws Exception {
-        this.mockMvc.perform(get("/hello")).andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("Hello")));
+        this.mockMvc.perform(get("/halloj")).andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("Hello")));
     }
     @Test
     void whenGetAllPersonsThenReturnCorrectSize() {

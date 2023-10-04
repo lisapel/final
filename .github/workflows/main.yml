@@ -17,10 +17,6 @@ jobs:
   
   create_pull_request:
    runs-on: ubuntu-latest
-   permissions:
-      contents: write
-      pull-requests: write
-      repository-projects: write
     
    steps:
     - name: Checkout code

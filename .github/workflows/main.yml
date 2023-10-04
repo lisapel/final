@@ -33,7 +33,6 @@ jobs:
       
         
     - name: Create Pull Request
-      if: startsWith(github.ref, 'refs/heads/feature')
       uses: peter-evans/create-pull-request@v3.10.1
       with:
         token: ${{ secrets.GH_TOKEN }}

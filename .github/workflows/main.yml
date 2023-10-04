@@ -4,6 +4,9 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 on:
+  pull_request:
+    types:
+      - opened
   push:
     branches: 
       - implementation
@@ -33,13 +36,13 @@ jobs:
       
         
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v3.10.1
+      uses: peter-evans/create-pull-request@v3
       with:
-        token: ${{ secrets.GH_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         commit-message: Auto Pull Request
-        title: Your desired title
-        body: Auto-created Pull Request
-        branch: ${{ github.ref }} # The branch where you commit
+        title: 'Feature Pull Request'
+        body: 'This is a pull request for the feature branch.'
+        branch: feature # The branch where you commit
         base: main #  base branch here 
  
   unit_tests:

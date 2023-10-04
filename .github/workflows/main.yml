@@ -34,12 +34,13 @@ jobs:
       id: cpr
       uses: peter-evans/create-pull-request@v5
       with:
+        branch: main
+        base: feature-${{ github.run_number }}
         token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: Update report
+        commit-message: Pull Request
         committer: GitHub <noreply@github.com>
         author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
         signoff: false
-        branch: feature-${{ github.run_number }}
         delete-branch: true
         title: '[Example] Update report'
         body: |

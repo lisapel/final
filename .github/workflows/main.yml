@@ -34,8 +34,7 @@ jobs:
       id: cpr
       uses: peter-evans/create-pull-request@v5
       with:
-          branch: main
-          base: main
+          branch: feature-${{ github.run_number }}
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Pull Request
           committer: GitHub <noreply@github.com>

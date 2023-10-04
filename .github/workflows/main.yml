@@ -8,8 +8,34 @@ on:
     branches:
       - implementation
       - main
+      - feature/*
 
 jobs:
+  
+  create_pull_request:
+   runs-on: ubuntu-latest
+
+   steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Create feature branch
+      run: |
+        FEATURE_BRANCH="feature/$(date +'%Y%m%d%H%M%S')"
+        git checkout -b "$FEATURE_BRANCH"
+        git push origin "$FEATURE_BRANCH"
+        
+    - name: Create Pull Request
+      if: startsWith(github.ref, 'refs/heads/feature')
+      uses: peter-evans/create-pull-request@v3.10.1
+      with:
+        token: ${{ secrets.GH_TOKEN }}
+        commit-message: Auto Pull Request
+        title: Your desired title
+        body: Auto-created Pull Request
+        branch: ${{ github.ref }} # The branch where you commit
+        base: main #  base branch here
+ 
   unit_tests:
     runs-on: ubuntu-latest
   

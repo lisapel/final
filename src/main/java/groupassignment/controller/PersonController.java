@@ -20,7 +20,7 @@ public class PersonController {
     public List<Person> getAllPersons(){
         return personRepository.findAll();
     }
-//
+
     @PostMapping("/add")
     public Person addPerson(@RequestBody Person person){
         Person person1 = new Person();

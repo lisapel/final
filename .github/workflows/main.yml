@@ -6,7 +6,7 @@ env:
 on:
   pull_request:
     types:
-      - created
+      - opened
   push:
     branches: 
       - implementation
@@ -29,19 +29,6 @@ jobs:
         git checkout -b feature-${{ github.run_number }}
         git push origin feature-${{ github.run_number }}
       
-    - name: Pull Request
-      if: startsWith(github.ref, 'refs/heads/feature')
-      uses: devops-infra/action-pull-request@v0.5.5
-      with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          title: ${{ github.event.commits[0].message }}
-          assignee: ${{ github.actor }}
-          label: automatic,feature
-          template: .github/PULL_REQUEST_TEMPLATE/FEATURE.md
-          old_string: "**Write you description here**"
-          new_string: ${{ github.event.commits[0].message }}
-          get_diff: true
- 
   unit_tests:
     
     runs-on: ubuntu-latest

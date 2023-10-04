@@ -21,7 +21,7 @@ jobs:
 
     - name: Create feature branch
       run: |
-        FEATURE_BRANCH="feature/$(date +'%Y%m%d%H%M%S')"
+        FEATURE_BRANCH="feature/$(date +'%H%M%S')""
         git checkout -b "$FEATURE_BRANCH"
         git push origin "$FEATURE_BRANCH"
         

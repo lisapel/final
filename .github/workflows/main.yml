@@ -49,9 +49,9 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Run UnitTests
-        run: ./gradlew test --tests "groupassignment.controller.UnitTests"
+        run: ./gradlew test 
 
-  all_tests:
+  integration_tests:
     runs-on: ubuntu-latest
     needs: unit_tests
 
@@ -69,10 +69,10 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Run all tests
-        run: ./gradlew test
+        run: ./gradlew integrationTest
 
   publish_github_package:
-    needs: [unit_tests, all_tests]
+    needs: [unit_tests, integration_tests]
     runs-on: ubuntu-latest
     permissions:
       contents: read

@@ -27,8 +27,8 @@ jobs:
 
     - name: Create feature branch
       run: |
-        git checkout -b feature/feature-${{ github.run_number }}
-        git push origin feature/feature-${{ github.run_number }}
+        git checkout -b feature-${{ github.run_number }}
+        git push origin feature-${{ github.run_number }}
       
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
@@ -38,7 +38,7 @@ jobs:
         title: 'Feature Pull Request'
         body: 'This is a pull request for the feature branch.'
         branch: main # The branch where you commit
-        base: feature/feature-${{ github.run_number }}#  base branch here 
+        base: feature-${{ github.run_number }}#  base branch here 
  
   unit_tests:
     

@@ -135,5 +135,18 @@ jobs:
     steps:
     - name: deploy
       run: echo $IMAGE_NAME
+
+  delete_feature_branch:
+    runs-on: ubuntu-latest
+    needs: create_pull_request
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Delete feature branch
+        run: |
+          git push origin --delete feature-${{ github.run_number }}
    
   

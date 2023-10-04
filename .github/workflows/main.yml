@@ -31,18 +31,23 @@ jobs:
         git push origin feature-${{ github.run_number }}
       
     - name: Create Pull Request
-      id: cpr
-      uses: peter-evans/create-pull-request@v5
+      uses: devops-infra/action-pull-request@v0.5.5
       with:
-          branch: main
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Pull Request
-          committer: GitHub <noreply@github.com>
-          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          signoff: false
-          delete-branch: true
-          title: 'Feature Pull Request'
-          body: 'This is a pull request for the feature branch.'
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        source_branch: feature-${{ github.run_number }}
+        target_branch: main
+        title: My pull request
+        template: .github/PULL_REQUEST_TEMPLATE.md
+        body: "**Automated pull request**"
+        reviewer: lisapel
+        assignee: lisapel
+        label: enhancement
+        milestone: My milestone
+        draft: true
+        old_string: "<!-- Add your description here -->"
+        new_string: "** Automatic pull request**"
+        get_diff: true
+        allow_no_diff: false
  
   unit_tests:
     

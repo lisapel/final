@@ -16,7 +16,7 @@ public class PersonController {
     public String sayHello(){
         return "Hello";
     }
-    @GetMapping("/all")
+    @GetMapping("/all")//
     public List<Person> getAllPersons(){
         return personRepository.findAll();
     }

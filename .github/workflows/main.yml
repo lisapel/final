@@ -11,7 +11,7 @@ on:
     branches: 
       - implementation
       - main
-      - feature_*
+      - feature/*
 
 jobs:
   
@@ -28,8 +28,8 @@ jobs:
 
     - name: Create feature branch
       run: |
-        git checkout -b feature_$RUNNER_NUMBER"
-        git push origin feature_$RUNNER_NUMBER"
+        git checkout -b feature"
+        git push origin feature"
       
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
@@ -38,7 +38,7 @@ jobs:
         commit-message:  Pull Request
         title: 'Feature Pull Request'
         body: 'This is a pull request for the feature branch.'
-        branch: feature_$RUNNER_NUMBER # The branch where you commit
+        branch: feature # The branch where you commit
         base: main #  base branch here 
  
   unit_tests:

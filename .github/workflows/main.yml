@@ -2,7 +2,7 @@ name: test-build-push-deploy
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  IMAGE: ${{ github.repository }}:${{ github.head_ref }}
+  IMAGE: ${{ github.repository }}:${{github.ref_name}}
 
 on:
   push:
@@ -134,7 +134,7 @@ jobs:
   deploy_to_production:
     runs-on: ubuntu-latest
     needs: [ unit_tests, integration_tests, publish_github_package ]
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.event_name == 'pull_request'
 
     steps:
       - name: Deploy to Production Environment

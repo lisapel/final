@@ -13,13 +13,9 @@ public class PersonController {
     PersonRepository personRepository;
 
     @RequestMapping("/hello") //ändring
-    public String sayHello(){
-        return "Hello";
-    }
+    public String sayHello(){return "Hello";}
     @GetMapping("/all")
-    public List<Person> getAllPersons(){
-        return personRepository.findAll();
-    }
+    public List<Person> getAllPersons(){return personRepository.findAll();}
 
     @PostMapping("/add")
     public Person addPerson(@RequestBody Person person){

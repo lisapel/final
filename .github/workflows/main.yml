@@ -66,9 +66,11 @@ jobs:
            java-version: 17
            distribution: temurin
 
+       - name: Build with gradle
+         run: chmod +x ./gradlew
 
        - name: Run Checkstyle
-         run: chmod +x ./gradlew checkstyleMain checkstyleTest
+         run: ./gradlew checkstyleMain checkstyleTest
 
   publish_github_package:
     needs: [unit_tests, integration_tests, checkstyle_tests]

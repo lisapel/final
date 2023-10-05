@@ -9,7 +9,9 @@ on:
     branches:
       - feature*
       - main
-  
+  pull_request:
+    branches:
+      - main
 jobs:
 
   unit_tests:
@@ -112,11 +114,20 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push From DockerFile
+        if: github.event_name != 'pull_request'
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
           tags: ghcr.io/${{ github.repository }}:${{github.ref_name}}
+
+      - name: Build and push from DockerFile Pull Req
+        if: github.event_name == 'pull_request' && github.base_ref == 'refs/heads/main'
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/lisapel/final:main
 
   deploy_to_test:
     runs-on: ubuntu-latest

@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class App {
 
-    //ny branch
+    //testar checks
     public String getGreeting() {
         return "Hello World!";
     }

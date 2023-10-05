@@ -122,7 +122,7 @@ jobs:
           tags: ghcr.io/${{ github.repository }}:${{github.ref_name}}
 
       - name: Build and push from DockerFile Pull Req
-        if: github.event_name == 'pull_request' && github.base_ref == 'refs/heads/main')
+        if: github.event_name == 'pull_request' && github.base_ref == 'refs/heads/main'
         uses: docker/build-push-action@v5
         with:
           context: .

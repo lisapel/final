@@ -17,10 +17,13 @@ jobs:
     runs-on: ubuntu-latest
     services:
       app:
-        image: nginx:alpine
+        image: ${{ github.repository }}:${{github.ref_name}}
+        credentials:
+          username: ${{ github.actor }}
+          password: ${{ secrets.token }}
         ports: 
-        - 80:80
-        options: --health-cmd="curl -f http://localhost:80" --health-interval=10s --health-timeout=5s --health-retries=3
+        - 8080:8080
+        options: --health-cmd="curl -f http://localhost:8080/" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
     - uses: actions/checkout@v4

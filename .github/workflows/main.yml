@@ -9,7 +9,9 @@ on:
     branches:
       - feature*
       - main
-  
+  pull_requests:
+    branches:
+      - main
 jobs:
 
   unit_tests:

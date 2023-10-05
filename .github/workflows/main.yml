@@ -61,11 +61,12 @@ jobs:
        - name: Checkout code
          uses: actions/checkout@v4
 
-       - name: Set up JDK
-         uses: actions/setup-java@v3
+       - name: Set up Java
+         uses: actions/setup-java@v2
          with:
-         java-version: '17'
-         distribution: 'temurin'
+           java-version: 17
+           distribution: temurin
+
        - name: Run Checkstyle
          run: ./gradlew checkstyleMain checkstyleTest
 

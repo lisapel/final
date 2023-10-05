@@ -14,7 +14,6 @@ on:
 jobs:
 
   unit_tests:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -53,8 +52,28 @@ jobs:
       - name: Run all tests
         run: ./gradlew integrationTest
 
+  checkstyle_tests:
+     runs-on: ubuntu-latest
+     needs: [unit_tests, integration_tests]
+     steps:
+
+       - name: Checkout code
+         uses: actions/checkout@v4
+
+       - name: Set up Java
+         uses: actions/setup-java@v2
+         with:
+           java-version: 17
+           distribution: temurin
+
+       - name: Build with gradle
+         run: chmod +x ./gradlew
+
+       - name: Run Checkstyle
+         run: ./gradlew checkstyleMain checkstyleTest
+
   publish_github_package:
-    needs: [unit_tests, integration_tests]
+    needs: [unit_tests, integration_tests, checkstyle_tests]
     runs-on: ubuntu-latest
     permissions:
       contents: read

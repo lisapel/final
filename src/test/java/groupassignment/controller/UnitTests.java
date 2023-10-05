@@ -14,9 +14,8 @@ import static org.mockito.Mockito.when;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-
-@SpringBootTest(classes = SmokeTests.class)
 @Tag("UnitTest")
+@SpringBootTest(classes = SmokeTests.class)
 class UnitTests {
 
     @MockBean

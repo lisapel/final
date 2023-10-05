@@ -5,30 +5,12 @@ env:
   IMAGE: ${{ github.repository }}:${{ github.head_ref }}
 
 on:
-  pull_request:
-    types:
-      - opened
   push:
     branches:
-      - implementation
+      - feature
       - main
 
 jobs:
-
-  create_pull_request:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Create feature branch
-        run: |
-          git checkout -b feature-${{ github.run_number }}
-          git push origin feature-${{ github.run_number }}
 
   unit_tests:
 
